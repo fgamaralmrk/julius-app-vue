@@ -4,9 +4,9 @@
       <form>
         <div id="tiposLancamento">
           <input type="radio" name="tipo" id="entrada" />
-          <label for="entrada">Entrada</label>
+          <label for="entrada" class="entrada">Entrada</label>
           <input type="radio" name="tipo" id="saida" />
-          <label for="saida">Saída</label>
+          <label for="saida" class="gasto">Saída</label>
         </div>
 
         <label for="valor">Valor</label>
@@ -85,26 +85,22 @@ button {
 #valor,
 #descricao,
 #data {
-  height: 20px;
+  height: 25px;
   font-family: "padrao";
   font-size: 100%;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  outline: none;
 }
 
 #tiposLancamento {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   font-family: "negrito";
+  font-size: 110%;
 }
 
 #tiposLancamento label {
   margin-right: 20px;
-}
-
-#tiposLancamento label:first-of-type {
-  color: #22a7f0;
-}
-
-#tiposLancamento label:last-of-type {
-  color: red;
 }
 
 #descricao {

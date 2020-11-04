@@ -62,7 +62,7 @@ export default {
   background-color: white;
   border-radius: 20px;
   font-family: "padrao";
-  padding: 10px;
+  padding: 20px;
   margin-bottom: 10px;
 }
 
@@ -108,13 +108,5 @@ export default {
 .valor {
   font-family: "negrito";
   font-size: 200% !important;
-}
-
-.entrada {
-  color: #22a7f0;
-}
-
-.gasto {
-  color: red;
 }
 </style>
