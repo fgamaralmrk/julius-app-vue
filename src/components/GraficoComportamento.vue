@@ -9,7 +9,7 @@ import { mapGetters } from "vuex";
 import Chart from "chart.js";
 
 export default {
-  name: "GraficoComponente",
+  name: "GraficoComportamento",
   computed: mapGetters(["todosLancamentos"]),
   methods: {
     renderizarGrafico() {
