@@ -48,7 +48,7 @@
 
     <div id="areaLancamentos">
       <BlocoLancamento
-        v-for="lancamento in todosLancamentos"
+        v-for="lancamento in ultimosLancamentos"
         v-bind:key="lancamento.id"
         :tipo="lancamento.valor > 0 ? 'entrada' : 'saida'"
         :lancamento="lancamento"
@@ -75,9 +75,9 @@ export default {
   components: {
     BlocoLancamento,
   },
-  computed: mapGetters(["todosLancamentos"]),
+  computed: mapGetters(["ultimosLancamentos"]),
   methods: {
-    ...mapActions(["salvarLancamento"]),
+    ...mapActions(["salvarLancamento", "carregarLancamentos"]),
     salvar(event) {
       event.preventDefault();
       if (this.tipo === "saida") {
@@ -93,6 +93,9 @@ export default {
       this.descricao = "";
       this.data = "";
     },
+  },
+  created() {
+    this.carregarLancamentos();
   },
 };
 </script>

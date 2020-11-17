@@ -9,49 +9,53 @@ import { mapGetters } from "vuex";
 import Chart from "chart.js";
 
 export default {
-  name: "GraficoComponente",
+  name: "GraficoComportamento",
   computed: mapGetters(["todosLancamentos"]),
   methods: {
     renderizarGrafico() {
-      let lancamentos = [...this.todosLancamentos];
-      lancamentos.sort((a, b) => new Date(a.data) - new Date(b.data));
+      const areaGrafico = document.getElementById("grafico");
 
-      let valorEmCaixa = 0;
-      let datas = [];
-      let valores = [];
+      if (areaGrafico) {
+        let lancamentos = [...this.todosLancamentos];
+        lancamentos.sort((a, b) => new Date(a.data) - new Date(b.data));
 
-      lancamentos.forEach((lancamento) => {
-        const dataFormatada = new Date(lancamento.data).toLocaleDateString(
-          "pt-BR",
-          {
-            timeZone: "UTC",
-          }
-        );
-        datas.push(dataFormatada);
-        valorEmCaixa += lancamento.valor;
-        valores.push(valorEmCaixa);
-      });
+        let valorEmCaixa = 0;
+        let datas = [];
+        let valores = [];
 
-      const corCurva = valorEmCaixa > 0 ? "blue" : "red";
-      const config = {
-        type: "line",
-        data: {
-          labels: datas,
-          datasets: [
+        lancamentos.forEach((lancamento) => {
+          const dataFormatada = new Date(lancamento.data).toLocaleDateString(
+            "pt-BR",
             {
-              label: "Comportamento do seu dinheiro",
-              borderColor: corCurva,
-              backgroundColor: corCurva,
-              data: valores,
-              fill: false,
-            },
-          ],
-        },
-        options: this.opcoesGrafico,
-      };
+              timeZone: "UTC",
+            }
+          );
+          datas.push(dataFormatada);
+          valorEmCaixa += lancamento.valor;
+          valores.push(valorEmCaixa);
+        });
 
-      const contexto = document.getElementById("grafico").getContext("2d");
-      new Chart(contexto, config);
+        const corCurva = valorEmCaixa > 0 ? "blue" : "red";
+        const config = {
+          type: "line",
+          data: {
+            labels: datas,
+            datasets: [
+              {
+                label: "Comportamento do seu dinheiro",
+                borderColor: corCurva,
+                backgroundColor: corCurva,
+                data: valores,
+                fill: false,
+              },
+            ],
+          },
+          options: this.opcoesGrafico,
+        };
+
+        const contexto = areaGrafico.getContext("2d");
+        new Chart(contexto, config);
+      }
     },
   },
   data: () => {
